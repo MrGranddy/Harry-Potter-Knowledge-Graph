@@ -5,32 +5,33 @@ import pylab
 
 import numpy as np
 
-with open("graph.json", "r") as f:
-    g = json.load(f)
+def build():
+    with open("graph.json", "r") as f:
+        g = json.load(f)
 
-source = g["source"]
-target = g["target"]
-relation = g["relation"]
+    source = g["source"]
+    target = g["target"]
+    relation = g["relation"]
 
-perm = np.random.permutation(500)
+    """
+    perm = np.random.permutation(500)
 
-_source = []
-_target = []
-_relation = []
+    _source = []
+    _target = []
+    _relation = []
 
-for idx in perm:
+    for idx in perm:
 
-    _source.append( source[idx] )
-    _target.append( target[idx] )
-    _relation.append( relation[idx] )
+        _source.append( source[idx] )
+        _target.append( target[idx] )
+        _relation.append( relation[idx] )
 
-source = _source
-target = _target
-relation = _relation
+    source = _source
+    target = _target
+    relation = _relation
+    """
 
-G = nx.DiGraph()
-G.add_edges_from( zip(source, target) )
+    G = nx.DiGraph()
+    G.add_edges_from( zip(source, target) )
 
-nx.draw(G,with_labels=True)
-plt.draw()
-plt.show()
+    return G, (source, target, relation)
